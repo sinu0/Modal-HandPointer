@@ -36,7 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/src/HandPointer/HandPointer.o \
-	${OBJECTDIR}/src/HandPointer/Mouse.o
+	${OBJECTDIR}/src/HandPointer/Media.o
 
 
 # C Compiler Flags
@@ -68,10 +68,10 @@ ${OBJECTDIR}/src/HandPointer/HandPointer.o: nbproject/Makefile-${CND_CONF}.mk sr
 	${RM} $@.d
 	$(COMPILE.cc) -g -Iinclude/cvBlob `pkg-config opencv --cflags --libs` -lX11 -I/usr/local/include -L/usr/local/lib -lcvblob -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/HandPointer/HandPointer.o src/HandPointer/HandPointer.cpp
 
-${OBJECTDIR}/src/HandPointer/Mouse.o: nbproject/Makefile-${CND_CONF}.mk src/HandPointer/Mouse.cpp 
+${OBJECTDIR}/src/HandPointer/Media.o: nbproject/Makefile-${CND_CONF}.mk src/HandPointer/Media.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src/HandPointer
 	${RM} $@.d
-	$(COMPILE.cc) -g -Iinclude/cvBlob `pkg-config opencv --cflags --libs` -lX11 -I/usr/local/include -L/usr/local/lib -lcvblob -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/HandPointer/Mouse.o src/HandPointer/Mouse.cpp
+	$(COMPILE.cc) -g -Iinclude/cvBlob `pkg-config opencv --cflags --libs` -lX11 -I/usr/local/include -L/usr/local/lib -lcvblob -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/HandPointer/Media.o src/HandPointer/Media.cpp
 
 # Subprojects
 .build-subprojects:

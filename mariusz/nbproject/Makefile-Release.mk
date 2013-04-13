@@ -36,7 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/src/HandPointer/HandPointer.o \
-	${OBJECTDIR}/src/HandPointer/Mouse.o
+	${OBJECTDIR}/src/HandPointer/Media.o
 
 
 # C Compiler Flags
@@ -68,10 +68,10 @@ ${OBJECTDIR}/src/HandPointer/HandPointer.o: src/HandPointer/HandPointer.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/HandPointer/HandPointer.o src/HandPointer/HandPointer.cpp
 
-${OBJECTDIR}/src/HandPointer/Mouse.o: src/HandPointer/Mouse.cpp 
+${OBJECTDIR}/src/HandPointer/Media.o: src/HandPointer/Media.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src/HandPointer
 	${RM} $@.d
-	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/HandPointer/Mouse.o src/HandPointer/Mouse.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/HandPointer/Media.o src/HandPointer/Media.cpp
 
 # Subprojects
 .build-subprojects:

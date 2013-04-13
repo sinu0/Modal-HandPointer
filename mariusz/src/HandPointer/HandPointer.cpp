@@ -17,7 +17,7 @@
 #include <cvblob.h>
 #include "opencv2/opencv.hpp"
 #include <opencv/cv.h>
-#include "Mouse.hpp"
+#include "Media.hpp"
 using namespace cv;
 using namespace std;
 using namespace cvb;
@@ -42,9 +42,11 @@ int main(int, char**) {
     if (!cap.isOpened()) // check if we succeeded
         return -1;
 
-    Mouse mouse;
+    Media mouse;
     bool mouseon = true;
     int x, y;
+    //   W   H
+    pair<int,int> res = mouse.getResolution();
     
     namedWindow("output", 1);
     namedWindow("bin", 1);
@@ -100,7 +102,7 @@ int main(int, char**) {
             x = (int) it->second->centroid.x;
             y = (int) it->second->centroid.y;
             if (mouseon) {
-                mouse.setMouse(x/(double)frame.cols*1600,y/(double)frame.rows*900);
+                mouse.setMouse(x/(double)frame.cols*res.second,y/(double)frame.rows*res.first);
             }
             break;
         }

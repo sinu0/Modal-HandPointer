@@ -8,12 +8,15 @@
 #ifndef MOUSE_HPP
 #define	MOUSE_HPP
 #include <X11/Xlib.h>
-class Mouse {
+#include <iostream> 
+
+class Media {
 public:
-    Mouse();
-    Mouse(const Mouse& orig);
+    Media();
+    Media(const Media& orig);
     void setMouse(const int,const int);
-    virtual ~Mouse();
+    std::pair<int,int> getResolution();
+    virtual ~Media();
 private:
     Display *dpy;
     Window root_window;
