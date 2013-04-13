@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux-x86
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux-x86
-CND_ARTIFACT_NAME_Debug=przyklad
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/przyklad
+CND_ARTIFACT_NAME_Debug=mariusz
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/mariusz
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Debug=przyklad.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/przyklad.tar
+CND_PACKAGE_NAME_Debug=mariusz.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/mariusz.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux-x86
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux-x86
-CND_ARTIFACT_NAME_Release=przyklad
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/przyklad
+CND_ARTIFACT_NAME_Release=mariusz
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/mariusz
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Release=przyklad.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/przyklad.tar
+CND_PACKAGE_NAME_Release=mariusz.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/mariusz.tar
 #
 # include compiler specific variables
 #

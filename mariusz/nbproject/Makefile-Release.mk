@@ -23,7 +23,7 @@ AS=as
 # Macros
 CND_PLATFORM=GNU-Linux-x86
 CND_DLIB_EXT=so
-CND_CONF=Debug
+CND_CONF=Release
 CND_DISTDIR=dist
 CND_BUILDDIR=build
 
@@ -35,15 +35,16 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/main.o
+	${OBJECTDIR}/src/HandPointer/HandPointer.o \
+	${OBJECTDIR}/src/HandPointer/Mouse.o
 
 
 # C Compiler Flags
-CFLAGS=pkg-config --cflags --libs opencv
+CFLAGS=
 
 # CC Compiler Flags
-CCFLAGS=`pkg-config --cflags --libs opencv`  -lX11 
-CXXFLAGS=`pkg-config --cflags --libs opencv`  -lX11 
+CCFLAGS=
+CXXFLAGS=
 
 # Fortran Compiler Flags
 FFLAGS=
@@ -56,16 +57,21 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/przyklad
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mariusz
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/przyklad: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mariusz: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/przyklad ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mariusz ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/main.o: main.cpp 
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/HandPointer/HandPointer.o: src/HandPointer/HandPointer.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src/HandPointer
 	${RM} $@.d
-	$(COMPILE.cc) -g `pkg-config --cflags --libs opencv`  -lX11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/HandPointer/HandPointer.o src/HandPointer/HandPointer.cpp
+
+${OBJECTDIR}/src/HandPointer/Mouse.o: src/HandPointer/Mouse.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src/HandPointer
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/HandPointer/Mouse.o src/HandPointer/Mouse.cpp
 
 # Subprojects
 .build-subprojects:
@@ -73,7 +79,7 @@ ${OBJECTDIR}/main.o: main.cpp
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/przyklad
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mariusz
 
 # Subprojects
 .clean-subprojects:
