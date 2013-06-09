@@ -46,7 +46,7 @@
           <incDir>
             <pElem>include/cvBlob</pElem>
           </incDir>
-          <commandLine>`pkg-config opencv --cflags --libs` -lX11 -I/usr/local/include -L/usr/local/lib -lcvblob </commandLine>
+          <commandLine>`pkg-config opencv --cflags --libs` -lX11 -I/usr/local/include -L/usr/local/lib -lcvblob -lX11 -ldl -lXext</commandLine>
         </ccTool>
       </compileType>
       <item path="src/HandPointer/HandPointer.cpp" ex="false" tool="1" flavor2="0">

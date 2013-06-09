@@ -43,8 +43,8 @@ OBJECTFILES= \
 CFLAGS=
 
 # CC Compiler Flags
-CCFLAGS=`pkg-config opencv --cflags --libs` -lX11 -I/usr/local/include -L/usr/local/lib -lcvblob  
-CXXFLAGS=`pkg-config opencv --cflags --libs` -lX11 -I/usr/local/include -L/usr/local/lib -lcvblob  
+CCFLAGS=`pkg-config opencv --cflags --libs` -lX11 -I/usr/local/include -L/usr/local/lib -lcvblob -lX11 -ldl -lXext 
+CXXFLAGS=`pkg-config opencv --cflags --libs` -lX11 -I/usr/local/include -L/usr/local/lib -lcvblob -lX11 -ldl -lXext 
 
 # Fortran Compiler Flags
 FFLAGS=
@@ -66,12 +66,12 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mariusz: ${OBJECTFILES}
 ${OBJECTDIR}/src/HandPointer/HandPointer.o: nbproject/Makefile-${CND_CONF}.mk src/HandPointer/HandPointer.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src/HandPointer
 	${RM} $@.d
-	$(COMPILE.cc) -g -Iinclude/cvBlob `pkg-config opencv --cflags --libs` -lX11 -I/usr/local/include -L/usr/local/lib -lcvblob -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/HandPointer/HandPointer.o src/HandPointer/HandPointer.cpp
+	$(COMPILE.cc) -g -Iinclude/cvBlob `pkg-config opencv --cflags --libs` -lX11 -I/usr/local/include -L/usr/local/lib -lcvblob -lX11 -ldl -lXext -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/HandPointer/HandPointer.o src/HandPointer/HandPointer.cpp
 
 ${OBJECTDIR}/src/HandPointer/Media.o: nbproject/Makefile-${CND_CONF}.mk src/HandPointer/Media.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src/HandPointer
 	${RM} $@.d
-	$(COMPILE.cc) -g -Iinclude/cvBlob `pkg-config opencv --cflags --libs` -lX11 -I/usr/local/include -L/usr/local/lib -lcvblob -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/HandPointer/Media.o src/HandPointer/Media.cpp
+	$(COMPILE.cc) -g -Iinclude/cvBlob `pkg-config opencv --cflags --libs` -lX11 -I/usr/local/include -L/usr/local/lib -lcvblob -lX11 -ldl -lXext -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/HandPointer/Media.o src/HandPointer/Media.cpp
 
 # Subprojects
 .build-subprojects:
