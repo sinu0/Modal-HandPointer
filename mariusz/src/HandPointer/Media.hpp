@@ -37,6 +37,7 @@ private:
     int currYR;
     int currXM;
     int currYM;
+    std::pair<int,int> res;
 };
 
 #endif	/* MOUSE_HPP */

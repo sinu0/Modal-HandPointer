@@ -79,6 +79,7 @@ int main(int, char**) {
     namedWindow("output", 1);
     namedWindow("bin", 1);
     cap >> frame;
+    int frameX=frame.cols,frameY=frame.rows;
     flip(frame, frame, 1);
 
 
@@ -137,23 +138,23 @@ int main(int, char**) {
         if ((x = solution.x - 50) <= 0)
             x = 0;
         else
-            if ((x = solution.x - 50) >= 640)
-            x = 640;
+            if ((x = solution.x - 50) >= frameX)
+            x = frameX;
         if ((y = solution.y - 50) <= 0)
             y = 0;
         else
-            if ((y = solution.y - 50) >= 480)
-            y = 480;
+            if ((y = solution.y - 50) >= frameY)
+            y = frameY;
         if ((x1 = solution.x + solution.width + 50) <= 0)
             x1 = 0;
         else
-            if ((x1 = solution.x + solution.width + 50) >= 640)
-            x1 = 640;
+            if ((x1 = solution.x + solution.width + 50) >= frameX)
+            x1 = frameX;
         if ((y1 = solution.y + solution.height + 50) <= 0)
             y1 = 0;
         else
-            if ((y1 = solution.y + solution.height + 50) >= 480)
-            y1 = 480;
+            if ((y1 = solution.y + solution.height + 50) >= frameY)
+            y1 = frameY;
 
 
         p3 = Point(x, y);
@@ -166,8 +167,8 @@ int main(int, char**) {
         x = (int) (solution.x + solution.x + solution.width) / 2;
         y = (int) (solution.y + solution.y + solution.height) / 2;
         
-        mouse.setMouse(x / (double) frame.cols * res.second, y / (double) frame.rows * res.first,3);
-        mouse.drawArc(x / (double) frame.cols * res.second, y / (double) frame.rows * res.first, 3);
+        mouse.setMouse(x / (double) frame.cols * res.first, y / (double) frame.rows * res.second,3);
+        mouse.drawArc(x / (double) frame.cols * res.first, y / (double) frame.rows * res.second, 3);
        
 
         imshow("result3", searchRegion);

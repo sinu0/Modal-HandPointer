@@ -54,10 +54,11 @@ Media::Media() {
     XAllocColor(dpy, colormap, &colorval);
     XSetForeground(dpy, gc, colorval.pixel);
     XFillRectangle(dpy, double_buffer, gc, 0, 0, wa.width, wa.height);
-    currXM = 1600 / 2;
-    currYM = 900 / 2;
-    currXR = 1600 / 2;
-    currYR = 900 / 2;
+    res = getResolution();
+    currXM = res.first/2;
+    currYM = res.second / 2;
+    currXR = res.first/2;
+    currYR = res.second / 2;
 }
 
 void Media::setMouse(const int _x, const int _y, double speed) {
@@ -65,9 +66,9 @@ void Media::setMouse(const int _x, const int _y, double speed) {
 
     currXM -= speed * (xM - _x);
     currYM -= speed * (yM - _y);
-    if (currXM > 1600) currXM = 1600;
+    if (currXM >  res.first) currXM = res.first;
     if (currXM < 0) currXM = 0;
-    if (currYM > 900) currYM = 900;
+    if (currYM >  res.second) currYM = res.second;
     if (currYM < 0) currYM = 0;
     xM = _x;
     yM = _y;
@@ -78,23 +79,20 @@ void Media::setMouse(const int _x, const int _y, double speed) {
 
 std::pair<int, int> Media::getResolution() {
     std::pair<int, int> resoluton;
-    resoluton.first = XDisplayHeight(dpy, 0);
-    resoluton.second = XDisplayWidth(dpy, 0);
+    resoluton.second = XDisplayHeight(dpy, 0);
+    resoluton.first = XDisplayWidth(dpy, 0);
     return resoluton;
 
 }
 
 void Media::drawArc(int _x, int _y, double speed) {
 
-
-
-    
     draw();
     currXR -= speed * (xR - _x);
     currYR -= speed * (yR - _y);
-    if (currXR > 1600) currXR = 1600;
+    if (currXR > res.first) currXR = res.first;
     if (currXR < 0) currXR = 0;
-    if (currYR > 900) currYR = 900;
+    if (currYR > res.second) currYR =  res.second;
     if (currYR < 0) currYR = 0;
     xR = _x;
     yR = _y;
