@@ -47,7 +47,6 @@ void mouseHandler(int event, int x, int y, int flags, void* param) {
     }
 }
 
-
 void matchImage(Mat &img1, Mat &img2) {
     Mat imgOutput;
     int row = img1.rows - img2.rows + 1;
@@ -65,8 +64,11 @@ void matchImage(Mat &img1, Mat &img2) {
 int main(int, char**) {
 
     Media mouse;
-    bool mouseon = true;
+    
     int x, x1, y, y1;
+    int region = 20;
+    int pointerSpeed = 3;
+    bool pointerOn = true,mouseOn = true;
     //   W   H
     pair<int, int> res = mouse.getResolution();
 
@@ -79,7 +81,7 @@ int main(int, char**) {
     namedWindow("output", 1);
     namedWindow("bin", 1);
     cap >> frame;
-    int frameX=frame.cols,frameY=frame.rows;
+    int frameX = frame.cols, frameY = frame.rows;
     flip(frame, frame, 1);
 
 
@@ -96,12 +98,12 @@ int main(int, char**) {
         cvWaitKey(10);
     }
 
-    Point p1 = Point(point.x - 20, point.y - 20);
-    Point p2 = Point(point.x + 20, point.y + 20);
+    Point p1 = Point(point.x - 10, point.y - 10);
+    Point p2 = Point(point.x + 10, point.y + 10);
 
-    rectangle(frame, p1, p2, CV_RGB(255, 0, 0), 1, 8, 0);
     Rect ra = Rect(p1, p2);
     Mat imgTemplate = frame(ra);
+
     Point p3 = Point(p1.x - 30, p1.y - 30);
     Point p4 = Point(p2.x + 60, p2.y + 60);
 
@@ -117,9 +119,12 @@ int main(int, char**) {
     while (true) {
         cap >> frame;
         flip(frame, frame, 1);
-        Point p1 = Point(matchLoc.x, matchLoc.y);
-        Point p2 = Point(matchLoc.x + imgTemplate.cols, matchLoc.y + imgTemplate.rows);
 
+        p1.x = matchLoc.x;
+        p1.y = matchLoc.y;
+
+        p2.x = matchLoc.x + imgTemplate.cols;
+        p2.y = matchLoc.y + imgTemplate.rows;
 
         imgTemplate = searchRegion.clone();
         imgTemplate = imgTemplate(Rect(p1, p2));
@@ -128,37 +133,44 @@ int main(int, char**) {
         searchRegion = frame.clone();
         searchRegion = searchRegion(Rect(p3, p4));
 
-
-
         matchImage(searchRegion, imgTemplate);
+
         solution = Rect(Point(matchLoc.x + p3.x, matchLoc.y + p3.y), Point(matchLoc.x + imgTemplate.cols + p3.x, matchLoc.y +
                 imgTemplate.rows + p3.y));
+        //solution.Rect_(p1.x + p3.x, p1.y + p3.x, p2.x + p3.x, p2.y + p3.y);
 
+        x = solution.x - region;
+        y = solution.y - region;
+        x1 = solution.x + solution.width + region;
+        y1 = solution.y + solution.height + region;
 
-        if ((x = solution.x - 50) <= 0)
+        if (x <= 0)
             x = 0;
         else
-            if ((x = solution.x - 50) >= frameX)
+            if (x >= frameX)
             x = frameX;
-        if ((y = solution.y - 50) <= 0)
+        if (y <= 0)
             y = 0;
         else
-            if ((y = solution.y - 50) >= frameY)
+            if (y >= frameY)
             y = frameY;
-        if ((x1 = solution.x + solution.width + 50) <= 0)
+        if (x1 <= 0)
             x1 = 0;
         else
-            if ((x1 = solution.x + solution.width + 50) >= frameX)
+            if (x1 >= frameX)
             x1 = frameX;
-        if ((y1 = solution.y + solution.height + 50) <= 0)
+        if (y1 <= 0)
             y1 = 0;
         else
-            if ((y1 = solution.y + solution.height + 50) >= frameY)
+            if (y1 >= frameY)
             y1 = frameY;
 
 
-        p3 = Point(x, y);
-        p4 = Point(x1, y1);
+        p3.x = x;
+        p3.y = y;
+        p4.x = x1;
+        p4.y = y1;
+
         rectangle(frame, p3, p4, Scalar(0, 0, 255), 2, 8, 0);
         rectangle(frame, solution, Scalar(255, 0, 0), 2, 8, 0);
 
@@ -166,10 +178,11 @@ int main(int, char**) {
 
         x = (int) (solution.x + solution.x + solution.width) / 2;
         y = (int) (solution.y + solution.y + solution.height) / 2;
-        
-        mouse.setMouse(x / (double) frame.cols * res.first, y / (double) frame.rows * res.second,3);
-        mouse.drawArc(x / (double) frame.cols * res.first, y / (double) frame.rows * res.second, 3);
-       
+        if(mouseOn)
+                mouse.setMouse(x / (double) frame.cols * res.first, y / (double) frame.rows * res.second, pointerSpeed);
+        if(pointerOn)
+                mouse.drawArc(x / (double) frame.cols * res.first, y / (double) frame.rows * res.second, pointerSpeed);
+
 
         imshow("result3", searchRegion);
         imshow("result", frame);
@@ -183,6 +196,12 @@ int main(int, char**) {
             case 'r':
                 imgTemplate = rawTemplate.clone();
                 searchRegion = frame.clone();
+                break;
+            case 'p':
+                mouseOn = mouseOn ? false : true;
+                break;
+            case 'm':
+                pointerOn = pointerOn ? false : true;
                 break;
         }
 
