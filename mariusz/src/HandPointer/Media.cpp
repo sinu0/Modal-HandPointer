@@ -101,7 +101,8 @@ void Media::drawArc(int _x, int _y, double speed) {
 }
 
 void Media::draw() {
-
+    
+    
     XFillRectangle(dpy, root_window, gc, currXR, currYR, 50, 50);
 }
 
